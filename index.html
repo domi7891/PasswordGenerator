@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasswordGenerator</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="switchDiv">
+        <label class="switch">
+            <input type="checkbox" class="theme">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="container">
+        <div class="activateToggle">
+            <label class="actLabel">
+                <input type="checkbox">
+                <span class="activate"></span>
+                <span>Activate Extended</span>
+            </label>
+        </div>
+        <div class="inner">
+            <div class="resultDiv">
+                <div class="result">Generated Password</div>
+                <span>Click Password to copy</span>
+            </div>
+            <div class="row"><span>Password Length</span>
+                <input type="number" maxlength="2" id="length" value="15" min="1" max="50">
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Lowercase letters</span>
+                    <label>
+                        <input type="checkbox" id="lowerCase" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+
+                <div class="extended"></div>
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Uppercase letters</span>
+                    <label>
+                        <input type="checkbox" id="upperCase">
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+
+                <div class="extended"></div>
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Numbers</span>
+                    <label>
+                        <input type="checkbox" id="numbers">
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+                <div class="extended"></div>
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Symbols</span>
+                    <label>
+                        <input type="checkbox" id="symbols">
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+                <div class="extended">
+
+                </div>
+            </div>
+            <button id="generate">Generate</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
