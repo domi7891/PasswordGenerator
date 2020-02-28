@@ -21,7 +21,7 @@
     <div class="container">
         <div class="activateToggle">
             <label class="actLabel">
-                <input type="checkbox">
+                <input type="checkbox" >
                 <span class="activate"></span>
                 <span>Activate Extended</span>
             </label>
@@ -37,39 +37,46 @@
             <div class="column">
                 <div class="row"><span>Use Lowercase letters</span>
                     <label>
-                        <input type="checkbox" id="lowerCase" checked>
+                        <input type="checkbox" id="lowerCase" class='hasCheck' checked>
                         <span class="checkmark"></span>
                     </label>
                     <span class="arrow"></span>
                 </div>
 
-                <div class="extended"></div>
+                <div class="extended">
+                    <input type="text" maxlength="26" id="custLow" class="ext-input" pattern="[a-z]*" title="Only Lowercase and each only once" placeholder="Custom letters">
+                </div>
             </div>
             <div class="column">
                 <div class="row"><span>Use Uppercase letters</span>
                     <label>
-                        <input type="checkbox" id="upperCase">
+                        <input type="checkbox" id="upperCase" class='hasCheck'>
                         <span class="checkmark"></span>
                     </label>
                     <span class="arrow"></span>
                 </div>
 
-                <div class="extended"></div>
+                <div class="extended">
+                    <input type="text" maxlength="26" id="custUpp" class="ext-input" title="Only Uppercase and each only once" pattern="[A-Za-z]*" placeholder="Custom letters">
+                </div>
             </div>
             <div class="column">
                 <div class="row"><span>Use Numbers</span>
                     <label>
-                        <input type="checkbox" id="numbers">
+                        <input type="checkbox" id="numbers" class='hasCheck'>
                         <span class="checkmark"></span>
                     </label>
                     <span class="arrow"></span>
                 </div>
-                <div class="extended"></div>
+                <div class="extended">
+                    <input type="text" maxlength="10" id="custNumb" class="ext-input" title="Only Numbers and each only once" pattern="[0-9]*" placeholder="Custom numbers">
+                </div>
             </div>
             <div class="column">
-                <div class="row"><span>Use Symbols</span>
+                <div class="row">
+                    <span>Use Symbols</span>
                     <label>
-                        <input type="checkbox" id="symbols">
+                        <input type="checkbox" id="symbols" class='hasCheck'>
                         <span class="checkmark"></span>
                     </label>
                     <span class="arrow"></span>

@@ -9,13 +9,57 @@ const genBtn = document.querySelector('#generate')
 const theme = document.querySelector('.theme')
 const arrow = document.querySelectorAll('.arrow')
 const extended = document.querySelectorAll('.extended')
+const checkboxes = document.querySelectorAll('.hasCheck')
 const activate = document.querySelector('.actLabel input')
+const customUpper = document.querySelector('#custUpp')
+const customLower = document.querySelector('#custLow')
+const customNumbers = document.querySelector('#custNumb')
 
 activate.addEventListener('change', function() {
     if (this.checked)
         arrow.forEach(el => el.style.display = "flex");
-    else
-        arrow.forEach(el => el.style.display = "none");
+    else {
+        arrow.forEach(el => {
+            el.style.display = "none";
+            el.classList.remove("arrow-active")
+        });
+        extended.forEach(el => el.classList.remove("extended-active"))
+    }
+})
+
+customUpper.addEventListener('keyup', function(e) {
+    this.value = this.value.toUpperCase()
+    let isValid = this.checkValidity();
+
+    if (!isValid || this.value.includes(e.key.toUpperCase(), this.value.indexOf(e.key.toUpperCase()) + 1)) {
+        this.value = this.value.substr(0, this.value.length - 1);
+    }
+})
+
+customLower.addEventListener('keyup', function(e) {
+    let isValid = this.checkValidity();
+
+    if (!isValid || this.value.includes(e.key.toLowerCase(), this.value.indexOf(e.key.toLowerCase()) + 1)) {
+        this.value = this.value.substr(0, this.value.length - 1);
+    }
+})
+
+customNumbers.addEventListener('keyup', function(e) {
+    let isValid = this.checkValidity();
+
+    if (!isValid || this.value.includes(e.key, this.value.indexOf(e.key) + 1)) {
+        this.value = this.value.substr(0, this.value.length - 1);
+    }
+})
+
+checkboxes.forEach(el => {
+    el.addEventListener('change', function() {
+        if (!this.checked) {
+            this.parentNode.children
+            this.parentNode.parentNode.parentNode.children[1].classList.remove("extended-active")
+            this.parentNode.parentNode.children[2].classList.remove("arrow-active")
+        }
+    })
 })
 
 arrow.forEach(el => {
@@ -119,4 +163,19 @@ function randomNumber() {
 function randomSymbol() {
     var symbols = ["!", "\"", "§", "$", "%", "&", "/", "(", ")", "=", "?", "*", "+", "~", "#", "{", "[", "]", "}"];
     return symbols[Math.floor(Math.random() * symbols.length)]
+}
+
+function check() {
+    const key = event.key.toLowerCase();
+
+    if (key.length !== 1) {
+        return;
+    }
+    const isLetter = (key >= "a" && key <= "z");
+    const isNumber = (key >= "0" && key <= "9");
+    const isSpace = (key == " ")
+    if (isLetter || isNumber || isSpace) {
+        return true
+    }
+    return false;
 }
