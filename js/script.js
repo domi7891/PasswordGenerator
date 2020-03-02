@@ -15,6 +15,7 @@ const customUpper = document.querySelector('#custUpp')
 const customLower = document.querySelector('#custLow')
 const customNumbers = document.querySelector('#custNumb')
 const customSymbols = document.querySelector('#custSymb')
+const symbols = ["!", "#", "$", "$", "%", "&", "*", "=", "?", "@", "~"]
 
 activate.addEventListener('change', function() {
     if (this.checked)
@@ -128,7 +129,7 @@ genBtn.addEventListener('click', (e) => {
     const hasNumber = numberElement.checked
     const hasSymbol = symbolElement.checked
 
-    if (length == 0 || length > 50) length = 15
+    if (length < 4 || length > 50) length = 8
     lengthElement.value = length
 
     if (!hasLower & !hasUpper & !hasNumber & !hasSymbol) {
@@ -147,16 +148,18 @@ genBtn.addEventListener('click', (e) => {
 
 function generatePassword(length, lower, upper, number, symbol) {
     let pass = ''
+    let symbols = 0;
+    let beSymbol = true;
+    let howManySymbols = length > 40 ? 15 : length > 30 ? 12 : length > 20 ? 10 : length > 10 ? 8 : length > 5 ? 4 : length > 2 ? 2 : 1;
 
     let which = [{ lower }, { upper }, { number }, { symbol }].filter(obj => Object.values(obj)[0])
 
-    if (which.length < 1)
-        return ''
-
     for (let i = 0; i < length; i++) {
-        let randNum = Math.floor(Math.random() * which.length)
+        let ran = Math.abs(Math.random() - 0.1)
+        let randNum = Math.floor(ran * which.length)
         const funct = Object.keys(which[randNum])[0]
-        pass += randomChar[funct]()
+        let char = randomChar[funct]()
+        pass += char;
     }
 
     return pass;
@@ -181,7 +184,7 @@ function randomNumber() {
 }
 
 function randomSymbol() {
-    var symbols = ["!", "#", "$", "$", "%", "&", "(", ")", "*", "+", "-", "/", ":", ";", "=", "?", "@", "[", "]", "\\", "_", "{", "}", "|", "~"]
+
     if (activate.checked && customSymbols.value.length > 0)
         return customSymbols.value[Math.floor(Math.random() * customSymbols.value.length)]
     return symbols[Math.floor(Math.random() * symbols.length)]
