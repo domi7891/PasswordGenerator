@@ -297,6 +297,8 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -323,6 +325,16 @@ body {
   border-radius: 10px;
 }
 
+.inner .column .extended .hint {
+  float: left;
+  font-size: 0.75rem;
+  padding: none;
+  font-weight: normal;
+  margin-top: 5px;
+  color: var(--text-color);
+  text-overflow: ellipsis;
+}
+
 .inner .column .extended-active {
   height: 40px;
   margin-top: 10px;
@@ -330,6 +342,10 @@ body {
 
 .inner .column .extended-active .ext-input {
   opacity: 1;
+}
+
+.inner .column .symbols.extended-active {
+  height: 55px;
 }
 
 .inner .row {

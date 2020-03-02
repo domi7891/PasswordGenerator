@@ -21,7 +21,7 @@
     <div class="container">
         <div class="activateToggle">
             <label class="actLabel">
-                <input type="checkbox" >
+                <input type="checkbox">
                 <span class="activate"></span>
                 <span>Activate Extended</span>
             </label>
@@ -81,8 +81,9 @@
                     </label>
                     <span class="arrow"></span>
                 </div>
-                <div class="extended">
-
+                <div class="extended symbols">
+                    <input type="text" maxlength="10" id="custSymb" class="ext-input" pattern="[!#$%&§()\*+\-\/:;=?@[\]\\_{}|~]*" placeholder="Custom Symbols">
+                    <span class="hint">Supported: ! # $ § % & ( ) * + - / : ; = ? @ [ ] \ _ { } | ~</span>
                 </div>
             </div>
             <button id="generate">Generate</button>

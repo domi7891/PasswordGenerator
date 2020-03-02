@@ -224,6 +224,7 @@ body {
         }
         .extended {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             position: relative;
             width: 100%;
@@ -243,6 +244,15 @@ body {
                 padding: 10px;
                 border-radius: 10px;
             }
+            .hint {
+                float: left;
+                font-size: 0.75rem;
+                padding: none;
+                font-weight: normal;
+                margin-top: 5px;
+                color: var(--text-color);
+                text-overflow: ellipsis;
+            }
         }
         .extended-active {
             height: 40px;
@@ -250,6 +260,9 @@ body {
             .ext-input {
                 opacity: 1;
             }
+        }
+        .symbols.extended-active {
+            height: 55px;
         }
     }
     .row {

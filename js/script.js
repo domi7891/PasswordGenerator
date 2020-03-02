@@ -14,6 +14,7 @@ const activate = document.querySelector('.actLabel input')
 const customUpper = document.querySelector('#custUpp')
 const customLower = document.querySelector('#custLow')
 const customNumbers = document.querySelector('#custNumb')
+const customSymbols = document.querySelector('#custSymb')
 
 activate.addEventListener('change', function() {
     if (this.checked)
@@ -23,7 +24,10 @@ activate.addEventListener('change', function() {
             el.style.display = "none";
             el.classList.remove("arrow-active")
         });
-        extended.forEach(el => el.classList.remove("extended-active"))
+        extended.forEach(el => {
+            el.classList.remove("extended-active")
+            el.children[0].value = ""
+        })
     }
 })
 
@@ -52,12 +56,20 @@ customNumbers.addEventListener('keyup', function(e) {
     }
 })
 
+customSymbols.addEventListener('keyup', function(e) {
+    let isValid = this.checkValidity();
+
+    if (!isValid || this.value.includes(e.key, this.value.indexOf(e.key) + 1)) {
+        this.value = this.value.substr(0, this.value.length - 1);
+    }
+})
+
 checkboxes.forEach(el => {
     el.addEventListener('change', function() {
         if (!this.checked) {
-            this.parentNode.children
             this.parentNode.parentNode.parentNode.children[1].classList.remove("extended-active")
             this.parentNode.parentNode.children[2].classList.remove("arrow-active")
+            this.parentNode.parentNode.parentNode.children[1].children[0].value = ""
         }
     })
 })
@@ -119,8 +131,10 @@ genBtn.addEventListener('click', (e) => {
     if (length == 0 || length > 50) length = 15
     lengthElement.value = length
 
-    if (!hasLower & !hasUpper & !hasNumber & !hasSymbol) hasLower = true
-    lowerElement.checked = true
+    if (!hasLower & !hasUpper & !hasNumber & !hasSymbol) {
+        hasLower = true
+        lowerElement.checked = true
+    }
 
     const text = generatePassword(length, hasLower, hasUpper, hasNumber, hasSymbol)
 
@@ -149,19 +163,27 @@ function generatePassword(length, lower, upper, number, symbol) {
 }
 
 function randomLowercase() {
+    if (activate.checked && customLower.value.length > 0)
+        return customLower.value[Math.floor(Math.random() * customLower.value.length)]
     return String.fromCharCode(Math.floor(Math.random() * 26) + 97)
 }
 
 function randomUppercase() {
+    if (activate.checked && customUpper.value.length > 0)
+        return customUpper.value[Math.floor(Math.random() * customUpper.value.length)]
     return String.fromCharCode(Math.floor(Math.random() * 26) + 65)
 }
 
 function randomNumber() {
+    if (activate.checked && customNumbers.value.length > 0)
+        return customNumbers.value[Math.floor(Math.random() * customNumbers.value.length)]
     return String.fromCharCode(Math.floor(Math.random() * 10) + 48)
 }
 
 function randomSymbol() {
-    var symbols = ["!", "\"", "§", "$", "%", "&", "/", "(", ")", "=", "?", "*", "+", "~", "#", "{", "[", "]", "}"];
+    var symbols = ["!", "#", "$", "$", "%", "&", "(", ")", "*", "+", "-", "/", ":", ";", "=", "?", "@", "[", "]", "\\", "_", "{", "}", "|", "~"]
+    if (activate.checked && customSymbols.value.length > 0)
+        return customSymbols.value[Math.floor(Math.random() * customSymbols.value.length)]
     return symbols[Math.floor(Math.random() * symbols.length)]
 }
 
