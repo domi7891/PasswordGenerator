@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple JavaScript based Password Generator">
+    <meta name="keywords" content="PasswordGenerator, JavaScript, HTML, SCSS">
+    <meta name="author" content="Dominik Nossal">
+    <title>PasswordGenerator</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="switchDiv">
+        <label class="switch">
+            <input type="checkbox" class="theme">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <div class="container">
+        <div class="activateToggle">
+            <label class="actLabel">
+                <input type="checkbox">
+                <span class="activate"></span>
+                <span>Activate Extended</span>
+            </label>
+        </div>
+        <div class="inner">
+            <div class="resultDiv">
+                <div class="result">Generated Password</div>
+                <span>Click Password to copy</span>
+            </div>
+            <div class="row"><span>Password Length</span>
+                <input type="number" maxlength="2" id="length" value="8" min="4" max="50">
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Lowercase letters</span>
+                    <label>
+                        <input type="checkbox" id="lowerCase" class='hasCheck' checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+
+                <div class="extended">
+                    <input type="text" maxlength="26" id="custLow" class="ext-input" pattern="[a-z]*" title="Only Lowercase and each only once" placeholder="Custom letters">
+                </div>
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Uppercase letters</span>
+                    <label>
+                        <input type="checkbox" id="upperCase" class='hasCheck'>
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+
+                <div class="extended">
+                    <input type="text" maxlength="26" id="custUpp" class="ext-input" title="Only Uppercase and each only once" pattern="[A-Za-z]*" placeholder="Custom letters">
+                </div>
+            </div>
+            <div class="column">
+                <div class="row"><span>Use Numbers</span>
+                    <label>
+                        <input type="checkbox" id="numbers" class='hasCheck'>
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+                <div class="extended">
+                    <input type="text" maxlength="10" id="custNumb" class="ext-input" title="Only Numbers and each only once" pattern="[0-9]*" placeholder="Custom numbers">
+                </div>
+            </div>
+            <div class="column">
+                <div class="row">
+                    <span>Use Symbols</span>
+                    <label>
+                        <input type="checkbox" id="symbols" class='hasCheck'>
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="arrow"></span>
+                </div>
+                <div class="extended symbols">
+                    <input type="text" maxlength="10" id="custSymb" class="ext-input" pattern="[!#$%&§()\*+\-\/:;=?@[\]\\_{}|~]*" placeholder="Custom Symbols">
+                    <span class="hint">Supported: ! # $ § % & ( ) * + - / : ; = ? @ [ ] \ _ { } | ~</span>
+                </div>
+            </div>
+            <button id="generate">Generate</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,551 @@
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  --background-color: #ececec;
+  --text-color: black;
+  --panel-shadow: -3px -3px 10px rgba(255, 255, 255, 1), 3px 3px 10px rgba(0, 0, 0, .4);
+  --textfield-shadow: inset -3px -3px 10px rgba(255, 255, 255, 1), inset 3px 3px 10px rgba(0, 0, 0, .2);
+  --checkmark-shadow: -3px -3px 10px rgba(255, 255, 255, 1), 3px 3px 10px rgba(0, 0, 0, .2);
+  --checkmark-inset-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1), inset 2px 2px 5px rgba(0, 0, 0, .2);
+  --btn-shadow: -3px -3px 10px rgba(255, 255, 255, 1), 3px 3px 10px rgba(0, 0, 0, .2);
+  --btn-active-shadow: inset -3px -3px 10px rgba(255, 255, 255, 1), inset 3px 3px 10px rgba(0, 0, 0, .2);
+  --arrow: url("/imgs/black_arrow.svg");
+  --checkbox-color: #b1b1b1;
+}
+
+html[data-theme='dark'] {
+  --background-color: #1b1b1b;
+  --text-color: rgb(165, 165, 165);
+  --panel-shadow: -1px -1px 10px rgba(255, 255, 255, .1), 3px 3px 10px rgba(0, 0, 0, .7);
+  --textfield-shadow: inset -1px -1px 5px rgba(255, 255, 255, .1), inset 1px 1px 10px rgba(0, 0, 0, .7);
+  --checkmark-shadow: -1px -1px 10px rgba(255, 255, 255, .1), 3px 3px 10px rgba(0, 0, 0, .7);
+  --checkmark-inset-shadow: inset -1px -1px 10px rgba(255, 255, 255, .1), inset 3px 3px 10px rgba(0, 0, 0, .7);
+  --btn-shadow: -2px -2px 10px rgba(255, 255, 255, .1), 3px 3px 10px rgba(0, 0, 0, .7);
+  --btn-active-shadow: inset -2px -2px 10px rgba(255, 255, 255, .1), inset 3px 3px 10px rgba(0, 0, 0, .7);
+  --arrow: url("/imgs/white_arrow.svg");
+  --checkbox-color: #363636;
+}
+
+button,
+input,
+span,
+div {
+  color: var(--text-color);
+}
+
+html.trnsition,
+html.transition *,
+html.transition *::before,
+html.transition *::after {
+  -webkit-transition: all 250ms !important;
+  transition: all 250ms !important;
+  -webkit-transition-delay: 0s !important;
+          transition-delay: 0s !important;
+}
+
+body {
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  height: calc(100vh - 5vh);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.switchDiv {
+  position: absolute;
+  top: 0.9vh;
+  right: 2%;
+}
+
+.switchDiv .switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 25px;
+}
+
+.switchDiv .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switchDiv .switch input:checked + .slider {
+  background-color: #006600;
+}
+
+.switchDiv .switch input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+          transform: translateX(20px);
+}
+
+.switchDiv .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50px;
+}
+
+.switchDiv .switch .slider:before {
+  position: absolute;
+  content: "";
+  width: 19px;
+  height: 19px;
+  left: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.activateToggle {
+  width: 30%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.activateToggle .actLabel {
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+.activateToggle .actLabel input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.activateToggle .actLabel .activate {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 15px;
+  width: 15px;
+  border-radius: 5px;
+  background-color: var(--checkbox-color);
+}
+
+.activateToggle .actLabel .activate::after {
+  content: '';
+  position: relative;
+  display: none;
+  width: 3px;
+  height: 7.5px;
+  border: solid var(--text-color);
+  border-radius: 5px;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.activateToggle .actLabel span {
+  margin-left: 5px;
+  line-height: 0.8rem;
+  font-size: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.activateToggle .actLabel input:checked ~ .activate::after {
+  display: block;
+}
+
+.activateToggle .actLabel input:checked + .inner .column .row .arrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.inner {
+  width: 30%;
+  max-height: 90%;
+  margin: 0 auto;
+  background-color: var(--background-color);
+  -webkit-box-shadow: var(--panel-shadow);
+          box-shadow: var(--panel-shadow);
+  border-radius: 15px;
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.inner .resultDiv {
+  position: relative;
+  min-width: 60%;
+  margin-bottom: 10px;
+  text-align: left;
+  max-width: 95%;
+}
+
+.inner .resultDiv .result {
+  min-width: calc(100% - 20px);
+  max-width: 95%;
+  overflow-wrap: break-word;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  -webkit-box-shadow: var(--textfield-shadow);
+          box-shadow: var(--textfield-shadow);
+  text-align: start;
+  line-height: 1.5rem;
+  cursor: pointer;
+}
+
+.inner .resultDiv span {
+  margin: 10px 0 0 5px;
+  font-size: 0.75rem;
+  font-weight: lighter;
+}
+
+.inner .column {
+  position: relative;
+  width: 60%;
+  margin: auto auto;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.inner .column .row {
+  width: 100%;
+  padding: 0;
+}
+
+.inner .column .row .arrow {
+  position: absolute;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  right: -30px;
+  content: var(--arrow);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform .5s ease-in-out;
+  transition: -webkit-transform .5s ease-in-out;
+  transition: transform .5s ease-in-out;
+  transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out;
+}
+
+.inner .column .row .arrow-active {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.inner .column .extended {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  width: 100%;
+  height: 0;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.inner .column .extended .ext-input {
+  width: 100%;
+  -webkit-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+  opacity: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-box-shadow: var(--textfield-shadow);
+          box-shadow: var(--textfield-shadow);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.inner .column .extended .hint {
+  float: left;
+  font-size: 0.75rem;
+  padding: none;
+  font-weight: normal;
+  margin-top: 5px;
+  color: var(--text-color);
+  text-overflow: ellipsis;
+}
+
+.inner .column .extended-active {
+  height: 40px;
+  margin-top: 10px;
+}
+
+.inner .column .extended-active .ext-input {
+  opacity: 1;
+}
+
+.inner .column .symbols.extended-active {
+  height: 55px;
+}
+
+.inner .row {
+  position: relative;
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: auto auto;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.inner .row input[type="number"] {
+  max-width: 8%;
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  height: 50%;
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  -webkit-box-shadow: var(--textfield-shadow);
+          box-shadow: var(--textfield-shadow);
+}
+
+.inner .row input[type="number"]::-webkit-outer-spin-button, .inner .row input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inner .row label {
+  cursor: pointer;
+}
+
+.inner .row label input {
+  position: absolute;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.inner .row label .checkmark {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 25px;
+  width: 25px;
+  border-radius: 15px;
+  background-color: var(--background-color);
+  -webkit-box-shadow: var(--checkmark-shadow);
+          box-shadow: var(--checkmark-shadow);
+}
+
+.inner .row label .checkmark:hover {
+  -webkit-box-shadow: var(--checkmark-inset-shadow);
+          box-shadow: var(--checkmark-inset-shadow);
+}
+
+.inner .row label .checkmark::after {
+  content: '';
+  position: relative;
+  display: none;
+  width: 5px;
+  height: 10px;
+  border: solid #585858;
+  border-radius: 5px;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.inner .row label input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.inner button {
+  width: 60%;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bolder;
+  margin-top: 20px;
+  background-color: var(--background-color);
+  -webkit-box-shadow: var(--btn-shadow);
+          box-shadow: var(--btn-shadow);
+  cursor: pointer;
+}
+
+.inner button:active {
+  -webkit-box-shadow: var(--btn-active-shadow);
+          box-shadow: var(--btn-active-shadow);
+  font-size: 1rem;
+}
+
+.inner button:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1500px) {
+  .inner,
+  .activateToggle {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 150px 50px 50px;
+    width: calc(100% - 100px);
+    height: calc(100vh - 200px - 5vh);
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+  }
+  .activateToggle {
+    width: 60%;
+  }
+  .inner {
+    width: 100%;
+    height: 100%;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    padding: 0;
+    max-height: 40%;
+  }
+  .inner button {
+    line-height: 10px;
+    width: 30%;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .switchDiv .switch {
+    width: 35px;
+    height: 20px;
+  }
+  .switchDiv .switch input:checked + .slider:before {
+    -webkit-transform: translateX(15px);
+            transform: translateX(15px);
+  }
+  .switchDiv .switch .slider::before {
+    height: 14px;
+    width: 14px;
+  }
+  .container {
+    height: auto;
+    width: calc(100% - 100px);
+    padding: 0;
+    margin: 30px auto 0;
+    padding-bottom: 30px;
+  }
+  .container .activateToggle {
+    width: 80%;
+  }
+  .container .activateToggle span {
+    font-size: 0.7rem;
+  }
+  .container .inner {
+    max-width: 80%;
+  }
+  .container .inner .column {
+    width: 100%;
+  }
+  .container .inner .row {
+    width: 100%;
+  }
+  .container .inner .row input[type="number"] {
+    width: 10%;
+    max-width: none;
+  }
+  .container .inner button {
+    width: 80%;
+    padding: 10px;
+  }
+  .container .inner .resultDiv {
+    width: 100%;
+  }
+  .container .inner .resultDiv .result {
+    width: 100%;
+    overflow: auto;
+  }
+}
+/*# sourceMappingURL=style.css.map */
